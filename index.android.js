@@ -10,37 +10,47 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TextInput
 } from 'react-native';
 
 export default class AwesomeProject extends Component {
+	  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
   render() {
     let pic = {
        uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
      };
      return (
-       <Image source={pic} style={{width: 193, height: 110}}/>
+       <View style= {{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+       <TextInput
+          style={{width:300 ,height: 40}}
+          placeholder="Type here to type in big blue color!"
+          onChangeText={(text) => this.setState({text})}
+        />
+       <Image source={{uri: this.state.text}} style={{width: 193, height: 110}}/>
+       <Text style={styles.bigblue}>
+          {this.state.text.split(' ').join(' ')}
+        </Text>
+       </View>
      );
   }
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  bigblue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  red: {
+    color: 'red',
   },
 });
-
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
