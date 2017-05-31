@@ -1,2 +1,2 @@
 # ReactNativeSample
-First React Native sample demo
+First React Native sample demos
