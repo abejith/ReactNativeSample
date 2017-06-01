@@ -1,56 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    TextInput,
+    StatusBar
 } from 'react-native';
 
-export default class AwesomeProject extends Component {
-	  constructor(props) {
-    super(props);
-    this.state = {text: ''};
-  }
-  render() {
-    let pic = {
-       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-     };
-     return (
-       <View style= {{
+export default class ImageForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            uri: 'http://www.appcoda.com/wp-content/uploads/2015/04/react-native.png',
+            Name: 'React Native'
+        };
+    }
+    render() {
+        return (
+            <View style= {styles.container}>
+                <StatusBar
+                 hidden={true}
+                />
+                <TextInput
+                  style={styles.textstyle}
+                  placeholder="URL here"
+                  onChangeText={(uri) => this.setState({uri})} />
+                <TextInput
+                  style={styles.textstyle}
+                  placeholder="Name of Picture"
+                  onChangeText={(name) => this.setState({name})} />
+                <Image source={{uri: this.state.uri}} style={{width: 200, height: 150}} />
+                <Text style={styles.bigblue}> {this.state.uri.split('/')[this.state.uri.split('/').length-1]}
+                </Text>
+                <Text style={styles.bigblue}>
+                  {this.state.Name}!
+                </Text>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-      }}>
-       <TextInput
-          style={{width:300 ,height: 40}}
-          placeholder="Type here to type in big blue color!"
-          onChangeText={(text) => this.setState({text})}
-        />
-       <Image source={{uri: this.state.text}} style={{width: 193, height: 110}}/>
-       <Text style={styles.bigblue}>
-          {this.state.text.split(' ').join(' ')}
-        </Text>
-       </View>
-     );
-  }
-}
-const styles = StyleSheet.create({
-  bigblue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-  red: {
-    color: 'red',
-  },
+    },
+    bigblue: {
+        color: 'blue',
+        fontWeight: 'bold',
+        fontSize: 30,
+    },
+    textstyle: {
+        width:300,
+        height: 40
+    },
+    red: {
+        color: 'red',
+    },
 });
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('AwesomeProject', () => ImageForm);
