@@ -14,7 +14,7 @@ export default class ImageForm extends Component {
         super(props);
         this.state = {
             uri: 'http://www.appcoda.com/wp-content/uploads/2015/04/react-native.png',
-            Name: 'React Native'
+            Name: 'React Native app'
         };
     }
     render() {
